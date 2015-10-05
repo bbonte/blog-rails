@@ -43,6 +43,8 @@ gem 'passenger'
 gem 'carrierwave'
 # Hide ("deleted_at" field) instead of destroy record in DB
 gem "paranoia", "~> 2.0"
+# Bootstrap
+gem 'bootstrap-sass', '~> 3.3.5.1'
 
 # ---
 
