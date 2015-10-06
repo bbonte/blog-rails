@@ -36,10 +36,10 @@ ActiveRecord::Schema.define(version: 20151002204854) do
   end
 
   create_table "profiles", force: :cascade do |t|
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
     t.string   "name",       limit: 255, null: false
     t.string   "email",      limit: 255, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "users", force: :cascade do |t|
