@@ -37,7 +37,9 @@ ActiveRecord::Schema.define(version: 20151002204854) do
 
   create_table "profiles", force: :cascade do |t|
     t.string   "name",       limit: 255, null: false
-    t.string   "email",      limit: 255, null: false
+    t.date     "birthdate"
+    t.string   "avatar",     limit: 255
+    t.integer  "user_id",    limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -53,6 +55,7 @@ ActiveRecord::Schema.define(version: 20151002204854) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
+    t.integer  "role",                   limit: 4,   default: 0,  null: false
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
   end

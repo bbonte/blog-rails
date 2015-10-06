@@ -22,4 +22,7 @@
 @import "bootstrap";
 
 // Import stylesheets manually here (because of Bootstrap requirements)
+//@import "scaffolds";
 @import "home";
+@import "posts";
+@import "comments";

@@ -3,7 +3,7 @@ class CreateProfiles < ActiveRecord::Migration
     create_table :profiles do |t|
       t.string :name, null: false
       t.date :birthdate
-      t.string avatar
+      t.string :avatar
       t.references :user
 
       t.timestamps null: false
