@@ -12,6 +12,10 @@
  *
  */
 
+/*
+ *= require jquery-ui
+ */
+
 // Change Bootstrap variables before '@import "bootstrap"'
 // $navbar-default-bg: #312312;
 // $light-orange: #ff8c00;
@@ -21,7 +25,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-// Import stylesheets manually here (because of Bootstrap requirements)
+@import "jquery-ui";
+
+// Import stylesheets here (manually because of Bootstrap requirements)
 //@import "scaffolds";
 @import "home";
 @import "posts";

@@ -12,4 +12,6 @@ class Profile < ActiveRecord::Base
   has_and_belongs_to_many :likes, join_table: :posts_profiles, class_name: "Post"
   has_many :comments
 
+  accepts_nested_attributes_for :user
+
 end

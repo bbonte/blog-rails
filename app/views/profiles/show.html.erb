@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<h1>My profile</h1>
+
+<p>
+  <strong>Name:</strong>
+  <%= @profile.name %>
+</p>
+
+<p>
+  <strong>Birthdate:</strong>
+  <%= @profile.birthdate %>
+</p>
+
+<p>
+  <strong>Avatar:</strong>
+  <%= @profile.avatar %>
+</p>
+
+<%= link_to 'Edit', edit_profile_path(@profile) %>
