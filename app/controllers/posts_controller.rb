@@ -64,6 +64,17 @@ class PostsController < ApplicationController
     end
   end
 
+  def toggle_like
+    @profile = current_user.profile
+    @post = Post.find(params[:id])
+
+    if @profile.likes.include?(@post)
+      @profile.likes.delete @post
+    else
+      @profile.likes.append @post
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post

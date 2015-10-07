@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   resources :profiles
 
+  put '/posts/toggle_like/:id' => 'posts#toggle_like', :as => 'toggle_like'
+
   resources :posts do
     resources :comments
   end

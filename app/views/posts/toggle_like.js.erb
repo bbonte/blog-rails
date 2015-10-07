@@ -1,0 +1,12 @@
+toggle_like()
+
+function toggle_like() {
+  if ($("#like_button").hasClass("liked")) {
+    $("#like_button").html("<span class='glyphicon glyphicon-thumbs-up' aria-hidden='true'></span> Like");
+    $("#like_button").toggleClass("liked");
+  }
+  else {
+    $("#like_button").html("<span class='glyphicon glyphicon-thumbs-down' aria-hidden='true'></span> Unlike");
+    $("#like_button").toggleClass("liked");
+  }
+}
