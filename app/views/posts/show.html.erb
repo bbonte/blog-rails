@@ -1,12 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+<h1><%= @post.title %></h1>
+<h4><%= @post.created_at.strftime("%d %B %Y") %></h4>
+
+<p>Publisher: <strong><%= @post.profile.name %></strong></p>
 
 <p>
-  <strong>Content:</strong>
   <%= @post.content %>
 </p>
 
@@ -15,10 +14,9 @@
   <%= @post.avatar %>
 </p>
 
-<p>
-  <strong>Profile:</strong>
-  <%= @post.profile.name %>
-</p>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
+<% if user_signed_in? %>
+  <%= link_to 'Edit', edit_post_path(@post) %> |
+<% end %>
+
 <%= link_to 'Back', posts_path %>

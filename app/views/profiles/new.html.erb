@@ -1,9 +1,15 @@
+<script>
+    $(function() {
+        $( "#datepicker" ).datepicker();
+    });
+</script>
+
 <h1>Sign up</h1>
 
 <%= form_for(@profile) do |f| %>
   <% if @profile.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+      <h4><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h4>
 
       <ul>
         <% @profile.errors.full_messages.each do |message| %>
@@ -14,21 +20,21 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :birthdate %><br>
-    <%= f.text_field :birthdate %>
+    <%= f.label :birthdate %>
+    <%= f.text_field(:birthdate, id: "datepicker") %>
   </div>
   <div class="field">
-    <%= f.label :avatar %><br>
+    <%= f.label :avatar %>
     <%= f.text_field :avatar %>
   </div>
 
   <%= f.fields_for :user do |ff| %>
     <div class="field">
-      <%= ff.label :email %><br>
+      <%= ff.label :email %>
       <%= ff.text_field :email %>
     </div>
 
@@ -36,12 +42,12 @@
       <%= ff.label :password %>
       <% if @minimum_password_length %>
         <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
+      <% end %>
       <%= ff.password_field :password, autocomplete: "off" %>
     </div>
 
     <div class="field">
-      <%= ff.label :password_confirmation %><br />
+      <%= ff.label :password_confirmation %>
       <%= ff.password_field :password_confirmation, autocomplete: "off" %>
     </div>
   <% end %>

@@ -32,3 +32,35 @@
 @import "home";
 @import "posts";
 @import "comments";
+
+.alert {
+  padding: 0;
+  color: #a94442;
+}
+
+.notice, #notice {
+  padding: 0;
+  color: #3c763d;
+}
+
+form {
+  margin-bottom: 15px;
+}
+
+form .field {
+  @extend .form-group;
+
+  input:not([type=checkbox]), textarea {
+    @extend .form-control;
+    width: 45%;
+  }
+}
+
+input[type="submit"] {
+  @extend .btn;
+  @extend .btn-default;
+}
+
+input[type="checkbox"] {
+  display: inline;
+}
