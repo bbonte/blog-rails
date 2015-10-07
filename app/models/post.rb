@@ -1,4 +1,5 @@
 class Post < ActiveRecord::Base
+  acts_as_paranoid
 
   ## CarrierWave avatar uploader
   mount_uploader :avatar, AvatarUploader

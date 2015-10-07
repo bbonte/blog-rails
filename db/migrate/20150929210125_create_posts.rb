@@ -7,6 +7,8 @@ class CreatePosts < ActiveRecord::Migration
 
       t.references :profile
 
+      t.datetime :deleted_at, null: true
+
       t.timestamps null: false
     end
   end

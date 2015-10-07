@@ -33,6 +33,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
       ## Add 'Role' field (0 = user, 1 = admin)
       t.integer :role, default: 0, null: false
 
+      # Paranoia gem: deleted_at field
+      t.datetime :deleted_at, null: true
 
       t.timestamps null: false
     end

@@ -6,6 +6,8 @@ class CreateProfiles < ActiveRecord::Migration
       t.string :avatar
       t.references :user
 
+      t.datetime :deleted_at, null: true
+
       t.timestamps null: false
     end
   end

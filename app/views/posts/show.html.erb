@@ -48,12 +48,16 @@
   <% end %>
 <% end %>
 
-<%= form_for([@post, @post.comments.build]) do |f| %>
-  <div class="field">
-    Write a comment:
-    <%= f.text_area :content %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<% if user_signed_in? %>
+  <%= form_for([@post, @post.comments.build]) do |f| %>
+    <div class="field">
+      Write a comment:
+      <%= f.text_area :content %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+<% else %>
+  <p><em>You have to sign in to post comments!</em></p>
 <% end %>

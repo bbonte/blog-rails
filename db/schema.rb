@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20151002204854) do
     t.text     "content",    limit: 65535, null: false
     t.integer  "profile_id", limit: 4
     t.integer  "post_id",    limit: 4
+    t.datetime "deleted_at"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
@@ -26,6 +27,7 @@ ActiveRecord::Schema.define(version: 20151002204854) do
     t.text     "content",    limit: 65535
     t.string   "avatar",     limit: 255
     t.integer  "profile_id", limit: 4
+    t.datetime "deleted_at"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
@@ -40,6 +42,7 @@ ActiveRecord::Schema.define(version: 20151002204854) do
     t.date     "birthdate"
     t.string   "avatar",     limit: 255
     t.integer  "user_id",    limit: 4
+    t.datetime "deleted_at"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -56,6 +59,7 @@ ActiveRecord::Schema.define(version: 20151002204854) do
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
     t.integer  "role",                   limit: 4,   default: 0,  null: false
+    t.datetime "deleted_at"
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
   end

@@ -5,6 +5,8 @@ class CreateComments < ActiveRecord::Migration
       t.references :profile
       t.references :post
 
+      t.datetime :deleted_at, null: true
+
       t.timestamps null: false
     end
   end
