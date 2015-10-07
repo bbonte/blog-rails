@@ -43,6 +43,7 @@ gem 'devise'
 gem 'passenger'
 # Upload files in our services
 gem 'carrierwave'
+# gem 'rmagick'
 # Hide ("deleted_at" field) instead of destroy record in DB
 gem "paranoia", "~> 2.0"
 # Bootstrap

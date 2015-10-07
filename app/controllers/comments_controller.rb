@@ -4,6 +4,8 @@ class CommentsController < ApplicationController
 
     @comment = @post.comments.create(comment_params)
 
+    current_user.profile.comments.append @comment
+
     redirect_to post_path(@post)
   end
 

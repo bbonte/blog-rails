@@ -1,3 +1,17 @@
 // Place all the styles related to the Posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.post-image {
+  max-width: 400px;
+  float: right;
+  margin-left: 15px;
+  margin-bottom: 10px;
+}
+
+.posts-index-image {
+  max-width: 100px;
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}

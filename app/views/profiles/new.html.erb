@@ -28,8 +28,8 @@
     <%= f.text_field(:birthdate, id: "datepicker") %>
   </div>
   <div class="field">
-    <%= f.label :avatar %>
-    <%= f.text_field :avatar %>
+    <%= f.label :avatar %><br>
+    <%= f.file_field :avatar, class: "upload", id: "image1" %>
   </div>
 
   <%= f.fields_for :user do |ff| %>

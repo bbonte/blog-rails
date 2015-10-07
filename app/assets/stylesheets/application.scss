@@ -17,9 +17,10 @@
  */
 
 // Change Bootstrap variables before '@import "bootstrap"'
-// $navbar-default-bg: #312312;
-// $light-orange: #ff8c00;
-// $navbar-default-color: $light-orange;
+// Example:
+//  $navbar-default-bg: #312312;
+//  $light-orange: #ff8c00;
+//  $navbar-default-color: $light-orange;
 
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
 @import "bootstrap-sprockets";
@@ -29,9 +30,17 @@
 
 // Import stylesheets here (manually because of Bootstrap requirements)
 //@import "scaffolds";
-@import "home";
 @import "posts";
 @import "comments";
+@import "profiles";
+
+/*
+ * Global styles
+ */
+
+body {
+  padding-bottom: 30px;
+}
 
 .alert {
   padding: 0;

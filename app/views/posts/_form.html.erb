@@ -21,8 +21,9 @@
   </div>
   <div class="field">
     <%= f.label :avatar %>
-    <%= f.text_field :avatar %>
+    <%= f.file_field :avatar, class: "upload", id: "image1" %>
   </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
