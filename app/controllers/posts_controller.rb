@@ -21,6 +21,9 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    if current_user.profile != @post.profile
+     redirect_to root_path, alert: 'You are not authorized to edit this post.'
+    end
   end
 
   # POST /posts
@@ -29,38 +32,35 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.profile = current_user.profile
 
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: @post }
-      else
-        format.html { render :new }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+    if @post.save
+      redirect_to @post, notice: 'Post was successfully created.'
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
-    respond_to do |format|
+    if current_user.profile == @post.profile
       if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { render :show, status: :ok, location: @post }
+        redirect_to @post, notice: 'Post was successfully updated.'
       else
-        format.html { render :edit }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+        render :edit
       end
+    else
+      redirect_to root_path
     end
   end
 
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
-    @post.destroy
-    respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
-      format.json { head :no_content }
+    if current_user.profile == @post.profile
+      @post.destroy
+      redirect_to posts_url, notice: 'Post was successfully destroyed.'
+    else
+      redirect_to posts_url, alert:'You are not authorized to delete this post.'
     end
   end
 

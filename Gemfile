@@ -48,6 +48,8 @@ gem 'carrierwave'
 gem "paranoia", "~> 2.0"
 # Bootstrap
 gem 'bootstrap-sass', '~> 3.3.5.1'
+# Date validator
+gem 'jc-validates_timeliness'
 
 # ---
 

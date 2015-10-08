@@ -9,7 +9,7 @@ class Post < ActiveRecord::Base
 
   ## Associations
   belongs_to :profile
-  has_and_belongs_to_many :profiles
+  has_and_belongs_to_many :profiles, :dependent => :destroy ## LIKES
   has_many :comments, :dependent => :destroy
 
 end

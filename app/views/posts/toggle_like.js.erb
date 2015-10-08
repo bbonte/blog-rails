@@ -1,12 +1,14 @@
-toggle_like()
+$(document).ready(function(){
 
-function toggle_like() {
-  if ($("#like_button").hasClass("liked")) {
-    $("#like_button").html("<span class='glyphicon glyphicon-thumbs-up' aria-hidden='true'></span> Like");
-    $("#like_button").toggleClass("liked");
+  var likeBtn = $('a#<%= @post.id %>');
+
+  if (likeBtn.hasClass("liked")) {
+    likeBtn.html("<span class='glyphicon glyphicon-thumbs-up' aria-hidden='true'></span> Like");
+    likeBtn.toggleClass("liked");
   }
   else {
-    $("#like_button").html("<span class='glyphicon glyphicon-thumbs-down' aria-hidden='true'></span> Unlike");
-    $("#like_button").toggleClass("liked");
+    likeBtn.html("<span class='glyphicon glyphicon-thumbs-down' aria-hidden='true'></span> Unlike");
+    likeBtn.toggleClass("liked");
   }
-}
+
+});

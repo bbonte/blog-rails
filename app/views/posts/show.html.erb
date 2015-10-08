@@ -1,70 +1,86 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to(raw("<span class='glyphicon glyphicon-chevron-left' aria-hidden='true'></span> Back"), posts_path, class: "btn btn-default btn-xs") %>
+<section class="top_actions">
+  <%= link_to(raw("<span class='glyphicon glyphicon-chevron-left' aria-hidden='true'></span> Back to posts"), posts_path, class: "btn btn-default btn-xs") %>
 
-<% if user_signed_in? %>
-  <div class="pull-right">
+  <% if user_signed_in? %>
+    <div class="pull-right">
+      <% if current_user.profile.likes.include?(@post) %>
+        <%= link_to(raw("<span class='glyphicon glyphicon-thumbs-down' aria-hidden='true'></span> Unlike"), toggle_like_path(@post.id), method: :put, remote: true, id: @post.id, class: "btn btn-default btn-xs like-btn liked") %>
+      <% else %>
+        <%= link_to(raw("<span class='glyphicon glyphicon-thumbs-up' aria-hidden='true'></span> Like"), toggle_like_path(@post.id), method: :put, remote: true, id: @post.id, class: "btn btn-default btn-xs like-btn") %>
+      <% end %>
 
-    <% if current_user.profile.likes.include?(@post) %>
-      <%= link_to(raw("<span class='glyphicon glyphicon-thumbs-down' aria-hidden='true'></span> Unlike"), toggle_like_path(@post.id), method: :put, remote: true, id: "like_button", class: "btn btn-default btn-xs liked") %>
-    <% else %>
-      <%= link_to(raw("<span class='glyphicon glyphicon-thumbs-up' aria-hidden='true'></span> Like"), toggle_like_path(@post.id), method: :put, remote: true, id: "like_button", class: "btn btn-default btn-xs") %>
-    <% end %>
+      <% if current_user.profile == @post.profile %>
+        <%= link_to(raw("<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Edit"), edit_post_path(@post), class: "btn btn-default btn-xs") %>
+        <%= link_to(raw("<span class='glyphicon glyphicon-trash' aria-hidden='true'></span> Delete"), @post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default btn-xs") %>
+      <% end %>
+    </div>
+  <% end %>
+</section>
 
-    <%= link_to(raw("<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Edit"), edit_post_path(@post), class: "btn btn-default btn-xs") %>
-    <%= link_to(raw("<span class='glyphicon glyphicon-trash' aria-hidden='true'></span> Delete"), @post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default btn-xs") %>
-  </div>
-<% end %>
+<article class="full-article clearfix">
+  <h1><%= @post.title %></h1>
+  <h4>
+    <%= @post.created_at.strftime("%d %B %Y") %> &middot; <%= link_to @post.profile.name.to_s, @post.profile %>
+    &middot; <%= @post.profiles.count %> likes &middot; <%= @post.comments.count %> comments
+  </h4>
 
-<h1><%= @post.title %></h1>
-<h4><%= @post.created_at.strftime("%d %B %Y") %> - by <strong><%= link_to @post.profile.name.to_s, @post.profile %></strong></h4>
-
-<p>
-  <%= image_tag @post.avatar.to_s, class: "post-image" if @post.avatar.present?  %>
-
-  <%= simple_format(@post.content) %>
-</p>
-
-<p>
-  <em>Last updated at: <%= @post.updated_at.strftime("%d %B %Y") %></em>
-</p>
-
-<% if @post.comments.empty? %>
-  <h3>Comments</h3>
-<% else %>
-  <h3>Comments (<%= @post.comments.count %>)</h3>
-<% end %>
-
-<hr>
-
-<% if @post.comments.empty? %>
   <p>
-    Be the first one to add a comment!
+    <%= image_tag @post.avatar.to_s, class: "post-image" if @post.avatar.present?  %>
+
+    <%= simple_format(@post.content) %>
   </p>
-  <hr>
-<% else %>
-  <% @post.comments.each do |comment| %>
+
+  <% if @post.updated_at != @post.created_at %>
     <p>
-      <strong><%= comment.profile.name if comment.profile %></strong> -
-      <%= comment.created_at.strftime("%d %B %Y") if comment.created_at %>
+      <em>Last updated at: <%= @post.updated_at.strftime("%d %B %Y") %></em>
     </p>
+  <% end %>
+</article>
+
+<section class="comments">
+  <% if @post.comments.empty? %>
+    <h3>Comments</h3>
+  <% else %>
+    <h3>Comments (<%= @post.comments.count %>)</h3>
+  <% end %>
+
+  <hr>
+
+  <% if @post.comments.empty? %>
     <p>
-      <%= comment.content %>
+      Be the first one to add a comment!
     </p>
     <hr>
-  <% end %>
-<% end %>
+  <% else %>
+    <% @post.comments.each do |comment| %>
+      <p>
+        <% if user_signed_in? %>
+          <%= link_to(raw("<span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Remove"), post_comment_path(@post, comment), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default btn-xs pull-right") %>
+        <% end %>
 
-<% if user_signed_in? %>
-  <%= form_for([@post, @post.comments.build]) do |f| %>
-    <div class="field">
-      Write a comment:
-      <%= f.text_area :content %>
-    </div>
-    <div class="actions">
-      <%= f.submit %>
-    </div>
+        <strong><%= comment.profile.name if comment.profile %></strong> -
+        <%= comment.created_at.strftime("%d %B %Y") if comment.created_at %>
+      </p>
+      <p>
+        <%= comment.content %>
+      </p>
+      <hr>
+    <% end %>
   <% end %>
-<% else %>
-  <p><em>You have to sign in to post comments!</em></p>
-<% end %>
+
+  <% if user_signed_in? %>
+    <%= form_for([@post, @post.comments.build]) do |f| %>
+      <div class="field">
+        Write a comment:
+        <%= f.text_area :content %>
+      </div>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>
+  <% else %>
+    <p><em>You have to sign in to post comments!</em></p>
+  <% end %>
+</section>
